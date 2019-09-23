@@ -1,0 +1,45 @@
+package com.offcn.servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.offcn.domain.User;
+
+public class UserServlet extends HttpServlet {
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
+		List<User> list = new ArrayList<User>();
+		User user = new User();
+		user.setUid(1);
+		user.setUname("张三");
+		user.setUpwd("666");
+		User user1 = new User();
+		user1.setUid(2);
+		user1.setUname("张四");
+		user1.setUpwd("666");
+		User user2 = new User();
+		user2.setUid(3);
+		user2.setUname("张五");
+		user2.setUpwd("666");
+		list.add(user);
+		list.add(user1);
+		list.add(user2);
+		//使用jackson工具，将list集合转换为json字符串
+		ObjectMapper om = new ObjectMapper();
+		String jsonStr = om.writeValueAsString(list);
+		response.getWriter().print(jsonStr);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
