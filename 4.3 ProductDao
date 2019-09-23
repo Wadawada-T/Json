@@ -1,0 +1,22 @@
+package com.offcn.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.offcn.domain.Product;
+
+public class ProductDao {
+
+	public List<Product> findInfo(String keyname) throws Exception {
+		QueryRunner qr = new QueryRunner(C3p0Utils.getDataSource());
+		String key =  keyname.replace("", "%");
+		String sql = " select * from product1 where pname like ? or pinyin like ? ";
+		
+		return qr.query(sql, new BeanListHandler<Product>(Product.class),key,key);
+	}
+
+}
