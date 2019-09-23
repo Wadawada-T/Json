@@ -1,0 +1,8 @@
+ var json1 = ["aa","bb","cc"];
+	alert(json1[1]); 
+	
+	var json2 = {name:"admin",pwd:"888"};
+	alert(json2.name);
+	
+	var json3 = [{name:"admin",pwd:"333"},{name:"admin",pwd:"333",address:["北京","上海"]},{name:"admin",pwd:"333"}];
+	alert(json3[1].address[1]);
